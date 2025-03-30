@@ -34,7 +34,20 @@ Mar. 30 / 2025
 
 1. 對於每個元素 `arr[i]`，將它插入到正確的位置。
 2. 使得 `arr[0] ~ arr[i]` 之間保持有序。
-
+```
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
 ### 選擇排序 (Selection Sort)
 選擇排序的基本原理是：
 
