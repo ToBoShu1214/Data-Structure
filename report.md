@@ -170,16 +170,48 @@ void heapSort(vector<int>& arr) {
 
 ## 測試與結果
 
-測試使用不同大小的隨機整數陣列（500 至 5000 元素），比較各排序演算法的執行時間。
+測試使用不同大小的隨機整數陣列（500 至 5000 元素），並呼叫testSorting函式進行測試。
+```
+int main() {
+    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
+    srand(time(0)); 
+
+    for (int n : sizes) {
+        vector<int> arr(n);
+        for (int& x : arr) x = rand() % 10000 + 1; // 依照size生成隨機測資當作排序測資
+
+        cout << "\nSorting for n = " << n << endl;
+        testSorting(arr, insertionSort, "Insertion Sort");
+        testSorting(arr, selectionSort, "Selection Sort");
+        testSorting(arr, quickSort, "Quick Sort");
+        testSorting(arr, mergeSort, "Merge Sort");
+        testSorting(arr, heapSort, "Heap Sort");
+    }
+
+    return 0;
+}
+```
 
 - **測試方法**：
   - 使用標準 C++ 庫中的 `chrono` 計時工具，確保測量準確性。
   - 每個演算法以相同資料執行，以維持公平比較。
+```
+void testSorting(vector<int>& arr, void (*sortFunc)(vector<int>&), string sortName) {
+    auto start = high_resolution_clock::now();
+    sortFunc(arr);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << sortName << " took " << duration.count() << " ms." << endl;
+}
+```
 
 ### 測試結果趨勢
-
+- 結果
+![image](https://github.com/user-attachments/assets/6e2bf288-b234-4a32-8866-a7357f3c8db0)
+- 趨勢
 1. **O(n²) 演算法**：隨資料量增加，執行時間呈二次方增長。
 2. **O(n log n) 演算法**：隨資料量增加，執行時間增長較為緩和。
+
 
 ---
 
