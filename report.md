@@ -54,6 +54,20 @@ void insertionSort(vector<int>& arr) {
 1. 每次遍歷找出最小值。
 2. 將最小值放到當前位置。
 3. 重複直到所有元素排序完成。
+```
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        swap(arr[i], arr[minIdx]);
+    }
+}
+```
 
 ### 快速排序 (Quick Sort)
 快速排序採用分治法策略：
@@ -62,6 +76,32 @@ void insertionSort(vector<int>& arr) {
 2. **分割**：小於 pivot 的元素放左邊，大於 pivot 的放右邊。
 3. **遞迴**：對左右兩個子陣列重複上述步驟。
 4. **優化**：小於閾值的子陣列改用插入排序。
+```
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low + 10 <= high) {
+        int pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    } else {
+        insertionSort(arr);
+    }
+}
+```
+
+選取 pivot 方法：
+
+選擇三個元素（頭、中、尾），取中位數作為 pivot，減少最壞情況出現機率。
+```
+int medianOfThree(vector<int>& arr, int low, int high) {
+    int mid = low + (high - low) / 2;
+    if (arr[low] > arr[mid]) swap(arr[low], arr[mid]);
+    if (arr[low] > arr[high]) swap(arr[low], arr[high]);
+    if (arr[mid] > arr[high]) swap(arr[mid], arr[high]);
+    swap(arr[mid], arr[high - 1]);
+    return arr[high - 1];
+}
+```
+
 
 ### 合併排序 (Merge Sort)
 此實作採用 **迭代式合併排序**：
@@ -69,6 +109,18 @@ void insertionSort(vector<int>& arr) {
 1. 由下而上合併子陣列。
 2. 避免遞迴開銷。
 3. 依序處理不同大小的子陣列。
+```
+void mergeSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int size = 1; size < n; size *= 2) {
+        for (int left = 0; left < n - size; left += 2 * size) {
+            int mid = left + size - 1;
+            int right = min(left + 2 * size - 1, n - 1);
+            merge(arr, left, mid, right);
+        }
+    }
+}
+```
 
 ### 堆排序 (Heap Sort)
 堆排序使用 **最大堆** 資料結構：
@@ -76,6 +128,16 @@ void insertionSort(vector<int>& arr) {
 1. **建立最大堆**。
 2. **反覆將堆頂元素（最大值）移至陣列末尾**。
 3. **調整剩餘元素為最大堆**。
+```
+void heapSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+```
 
 ---
 
