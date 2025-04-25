@@ -21,7 +21,7 @@ APR. 25 / 2025
 - **選擇排序（Selection Sort）**
 - **快速排序（Quick Sort）**
 - **合併排序（Merge Sort）**
-- **堆排序（Heap Sort）**
+- **堆疊排序（Heap Sort）**
 
 測試目標為分析各演算法在不同輸入大小下的執行時間，並探討其效能特性。
 
@@ -103,7 +103,7 @@ void mergeSort(vector<int>& arr) {
 }
 ```
 
-### 堆排序 (Heap Sort)
+### 堆疊排序 (Heap Sort)
 ```cpp
 // 堆排序實作
 void heapSort(vector<int>& arr) {
@@ -128,7 +128,7 @@ void heapSort(vector<int>& arr) {
 | 選擇排序 | O(n^2) | O(n^2) | O(n^2) |
 | 快速排序 | O(n log n) | O(n log n) | O(n^2) |
 | 合併排序 | O(n log n) | O(n log n) | O(n log n) |
-| 堆排序 | O(n log n) | O(n log n) | O(n log n) |
+| 堆疊排序 | O(n log n) | O(n log n) | O(n log n) |
 
 ### 空間複雜度
 
@@ -138,7 +138,7 @@ void heapSort(vector<int>& arr) {
 | 選擇排序     | O(1)               |
 | 快速排序     | O(log n)（最壞 O(n)） |
 | 合併排序     | O(n)               |
-| 堆排序       | O(1)               |
+| 堆疊排序       | O(1)               |
 
 ### 穩定性分析
 
@@ -148,7 +148,7 @@ void heapSort(vector<int>& arr) {
 | 選擇排序     | ❌ 不穩定 |
 | 快速排序     | ❌ 不穩定 |
 | 合併排序     | ✅ 穩定  |
-| 堆排序       | ❌ 不穩定 |
+| 堆疊排序       | ❌ 不穩定 |
 
 ### 效能趨勢觀察
 
@@ -211,7 +211,7 @@ void testSorting(vector<int>& arr, void (*sortFunc)(vector<int>&), string sortNa
 | 資料近乎有序       | 插入排序       |
 | 一般情況最佳效能   | 快速排序       |
 | 穩定排序需求       | 合併排序       |
-| 記憶體使用需嚴格控制 | 堆排序         |
+| 記憶體使用需嚴格控制 | 堆疊排序         |
 
 ---
 
