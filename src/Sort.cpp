@@ -7,7 +7,7 @@
 using namespace std;
 using namespace std::chrono;
 
-// ´¡¤J±Æ§Ç
+// æ’å…¥æ’åº
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
@@ -21,7 +21,7 @@ void insertionSort(vector<int>& arr) {
     }
 }
 
-// ¿ï¾Ü±Æ§Ç
+// é¸æ“‡æ’åº
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n - 1; i++) {
@@ -35,7 +35,7 @@ void selectionSort(vector<int>& arr) {
     }
 }
 
-// §Ö³t±Æ§Ç
+// å¿«é€Ÿæ’åº
 int medianOfThree(vector<int>& arr, int low, int high) {
     int mid = low + (high - low) / 2;
     if (arr[low] > arr[mid]) swap(arr[low], arr[mid]);
@@ -73,7 +73,7 @@ void quickSort(vector<int>& arr) {
     quickSort(arr, 0, arr.size() - 1);
 }
 
-// ¦X¨Ö±Æ§Ç
+// åˆä½µæ’åº
 void merge(vector<int>& arr, int left, int mid, int right) {
     vector<int> leftArr(arr.begin() + left, arr.begin() + mid + 1);
     vector<int> rightArr(arr.begin() + mid + 1, arr.begin() + right + 1);
@@ -97,7 +97,7 @@ void mergeSort(vector<int>& arr) {
     }
 }
 
-// °ïÅ|±Æ§Ç
+// å †ç–Šæ’åº
 void heapify(vector<int>& arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
@@ -119,7 +119,7 @@ void heapSort(vector<int>& arr) {
     }
 }
 
-// ´ú¸Õ
+// æ¸¬è©¦
 void testSorting(vector<int>& arr, void (*sortFunc)(vector<int>&), string sortName) {
     auto start = high_resolution_clock::now();
     sortFunc(arr);
@@ -129,12 +129,12 @@ void testSorting(vector<int>& arr, void (*sortFunc)(vector<int>&), string sortNa
 }
 
 int main() {
-    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
+    vector<int> sizes = { 500, 1000, 2000, 4000, 5000, 10000, 50000 };
     srand(time(0)); 
 
     for (int n : sizes) {
         vector<int> arr(n);
-        for (int& x : arr) x = rand() % 10000 + 1; // ¨Ì·Ósize¥Í¦¨ÀH¾÷´ú¸ê·í§@±Æ§Ç´ú¸ê
+        for (int& x : arr) x = rand() % 10000 + 1; // ä¾ç…§sizeç”Ÿæˆéš¨æ©Ÿæ¸¬è³‡ç•¶ä½œæ’åºæ¸¬è³‡
 
         cout << "\nSorting for n = " << n << endl;
         testSorting(arr, insertionSort, "Insertion Sort");
